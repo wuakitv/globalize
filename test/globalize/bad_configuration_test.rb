@@ -10,8 +10,8 @@ class BadConfigurationTest < MiniTest::Spec
   end
 
   describe '#columns_hash' do
-    it 'returns columns on model table minus translated attributes' do
-      assert_equal ["id"], BadConfiguration.columns_hash.keys
+    it 'returns columns on model table with translated attributes' do
+      assert_equal ["id", "name"], BadConfiguration.columns_hash.keys
     end
   end
 end
