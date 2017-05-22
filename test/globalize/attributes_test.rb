@@ -256,9 +256,13 @@ class AttributesTest < MiniTest::Spec
       assert_equal data, model.meta
     end
 
-    it 'works with specified marshalling, without data, rails 3.1+' do
+    it 'works with specified marshalling, without data, rails 5.0+' do
       model = SerializedHash.new
-      assert_equal Hash.new, model.meta
+      if ::ActiveRecord::VERSION::STRING < "5.0"
+        assert_equal Hash.new, model.meta
+      else
+        assert_equal nil, model.meta
+      end
     end
   end
 
